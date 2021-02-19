@@ -1,16 +1,12 @@
 package com.cybertek.pages;
 
 import com.cybertek.utilities.ConfigurationReader;
-import com.cybertek.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class SmartBearPage {
+public class SmartBearPage extends BasePage{
 
-    public SmartBearPage() {
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
+
 // login method where we do not have to pass username and password
     public void loginToSmartBear() {
         usernameInput.sendKeys("Tester");

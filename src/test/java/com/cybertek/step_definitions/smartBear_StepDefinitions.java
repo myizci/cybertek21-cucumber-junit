@@ -3,11 +3,14 @@ package com.cybertek.step_definitions;
 import com.cybertek.pages.SmartBearPage;
 import com.cybertek.utilities.ConfigurationReader;
 import com.cybertek.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.Map;
 
 public class smartBear_StepDefinitions {
     SmartBearPage smartBearPage = new SmartBearPage();
@@ -70,11 +73,11 @@ public class smartBear_StepDefinitions {
 
         switch (cardType) {
 
-            case "Visa":
+            case "Visa": case "visa":
                 smartBearPage.visaButton.click();
                 break;
 
-            case "MasterCard":
+            case "MasterCard": case "masterCard":
                 smartBearPage.masterButton.click();
                 break;
 
@@ -107,5 +110,33 @@ public class smartBear_StepDefinitions {
 
 
         Assert.assertTrue(smartBearPage.name.getText().equals(expectedName));
+    }
+
+    @And("user enters address information")
+    public void userEntersAddressInformation(Map<String, String> addressInfo) {
+
+        String name = addressInfo.get("customerName");
+        String street = addressInfo.get("street");
+        String city = addressInfo.get("city");
+        String state = addressInfo.get("state");
+        String zip = addressInfo.get("zip");
+
+        smartBearPage.customerNameBox.sendKeys(name);
+        smartBearPage.streetBox.sendKeys(street);
+        smartBearPage.cityBox.sendKeys(city);
+        smartBearPage.stateBox.sendKeys(state);
+        smartBearPage.zipBox.sendKeys(zip);
+
+    }
+
+    @And("user enters payment information")
+    public void userEntersPaymentInformation(Map<String, String> addressInfo) {
+        String card = addressInfo.get("cardType");
+        String cardNo= addressInfo.get("cardNumber");
+        String expiration = addressInfo.get("expirationDate");
+        user_enters_as_card_type(card);
+        smartBearPage.cardNumberBox.sendKeys(cardNo);
+        smartBearPage.expirationDateBox.sendKeys(expiration);
+
     }
 }

@@ -1,11 +1,9 @@
 package com.cybertek.step_definitions;
 
 import com.cybertek.pages.DropDownPage;
-import com.cybertek.utilities.BrowserUtils;
-import com.cybertek.utilities.ConfigurationReader;
-import com.cybertek.utilities.Driver;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
+import com.cybertek.utilities.*;
+import io.cucumber.java.en.*;
+
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;

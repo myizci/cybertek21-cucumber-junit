@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ExcelRead {
 
@@ -18,6 +20,8 @@ public class ExcelRead {
         // workbook>sheet>row>cell
         // We created workbook instance and loaded with 'Sample Data"
         XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
+
+
 
         // Create the sheet and pass the name of the sheet we want to work on
 
@@ -41,6 +45,14 @@ public class ExcelRead {
 
         System.out.println(lastUsedRow);
 
+
+// It is from a student that prints all the names and jobs as Map
+
+        Map<String, String> employees = new LinkedHashMap<>();
+        for (int i = 0; i < usedRows; i++) {
+            employees.put(sheet.getRow(i).getCell(0).toString() +" "+ sheet.getRow(i).getCell(1).toString(), sheet.getRow(i).getCell(2).toString());
+        }
+        System.out.println(employees);
 
         //TODO 1- CREATE A LOGIC TO PRINT OUT ALEX'S NAME DYNAMICALLY
 
@@ -76,5 +88,9 @@ public class ExcelRead {
 
         }
 
+
+      // It is always a good idea to close fileInputStream or fileOutputStream and workbook
+        fileInputStream.close();
+        workbook.close();
     }
 }

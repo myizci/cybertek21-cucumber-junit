@@ -50,20 +50,45 @@ public class ExcelWrite {
         elonsCell.setCellValue("Melon");
 
 
+
+
+        System.out.println("After = " + elonsCell);
+
+
+
+//TODO: CHANGE LARA'S NAME TO KARA
+        /*
+        static way of the solution
+
+         */
+
+
+       XSSFCell larasCell = sheet.getRow(4).getCell(0);
+//
+//        larasCell.setCellValue("Kara");
+//
+//        System.out.println("larasCell = "+ larasCell);
+
+
+// Dynamic version
+
+        for (int rowNum = 0; rowNum < sheet.getPhysicalNumberOfRows(); rowNum++) {
+            if(sheet.getRow(rowNum).getCell(0).toString().equals("Kara")){
+                sheet.getRow(rowNum).getCell(0).setCellValue("Jimmy");
+            }
+        }
+
+        System.out.println("larasCell = "+ larasCell);
+
         FileOutputStream fileOutputStream = new FileOutputStream(path);
 
         workbook.write(fileOutputStream);
 
-
-        System.out.println("After = " + elonsCell);
 
 
         // It is good practice to close fileinput fileoutput and workbook
         fileInputStream.close();
         fileOutputStream.close();
         workbook.close();
-
-
-
     }
 }
